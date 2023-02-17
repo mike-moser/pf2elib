@@ -6,14 +6,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table'  
 import { CreatureListComponent } from './creature-list/creature-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CreatureDetailsComponent } from './creature-details/creature-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatureListComponent
+    CreatureListComponent,
+    CreatureDetailsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -21,8 +26,10 @@ import { CreatureListComponent } from './creature-list/creature-list.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
+    MatTableModule,
     RouterModule.forRoot([
-      { path: '', component: CreatureListComponent}
+      { path: '', component: CreatureListComponent},
+      { path: 'creature/:creatureId', component: CreatureDetailsComponent },
     ])
   ],
   providers: [],

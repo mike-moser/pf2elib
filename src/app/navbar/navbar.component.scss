@@ -1,0 +1,26 @@
+.toolbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .example-icon {
+    padding: 0 14px;
+    border-width: 0;
+    background-color: #1976d2;
+    color: white;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
