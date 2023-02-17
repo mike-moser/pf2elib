@@ -12,41 +12,34 @@ export interface DifficultyAdjustment
 
 export class DifficultyClass 
 {
-    simpleDCs: SimpleDifficultyClass[];
-    spellDCs: number[];
-    levelledDCs: number[];
-    difficultyAdj: DifficultyAdjustment[];
-    rarityAdj: DifficultyAdjustment[];
+    static simpleDCs: SimpleDifficultyClass[] = [
+        {
+            proficiency: "Untrained",
+            difficulty_class: 10
+        },
+        {
+            proficiency: "Trained",
+            difficulty_class: 15
+        },
+        {
+            proficiency: "Expert",
+            difficulty_class: 20
+        },
+        {
+            proficiency: "Master",
+            difficulty_class: 30
+        },
+        {
+            proficiency: "Legendary",
+            difficulty_class: 40
+        }
+    ];
 
-    constructor() {
-        this.simpleDCs = [
-            {
-                proficiency: "Untrained",
-                difficulty_class: 10
-            },
-            {
-                proficiency: "Trained",
-                difficulty_class: 15
-            },
-            {
-                proficiency: "Expert",
-                difficulty_class: 20
-            },
-            {
-                proficiency: "Master",
-                difficulty_class: 30
-            },
-            {
-                proficiency: "Legendary",
-                difficulty_class: 40
-            }
-        ];
+    static spellDCs: number[] = [ 15, 18, 20, 23, 26, 28, 31, 34, 36, 39 ];
+    
+    static levelledDCs: number[] = [ 14, 15, 16, 18, 19, 20, 22, 23, 24, 26, 27, 28, 30, 31, 32, 34, 35, 36, 38, 39, 40, 42, 44, 46, 48, 50 ];
 
-        this.spellDCs = [ 15, 18, 20, 23, 26, 28, 31, 34, 36, 39 ];
-
-        this.levelledDCs = [ 14, 15, 16, 18, 19, 20, 22, 23, 24, 26, 27, 28, 30, 31, 32, 34, 35, 36, 38, 39, 40, 42, 44, 46, 48, 50 ];
-
-        this.difficultyAdj = [
+    static difficultyAdj: DifficultyAdjustment[] = [
             {
                 adjustment_type: "Incredibly easy",
                 adjustment_value: -10
@@ -77,31 +70,30 @@ export class DifficultyClass
             },
         ];
 
-        this.rarityAdj = [
-            {
-                adjustment_type: "Common",
-                adjustment_value: 0
-            },
-            {
-                adjustment_type: "Uncommon",
-                adjustment_value: 2
-            },
-            {
-                adjustment_type: "Rare",
-                adjustment_value: 5
-            },
-            {
-                adjustment_type: "Unique",
-                adjustment_value: 10
-            },
-        ];
-    }
+    static rarityAdj: DifficultyAdjustment[] = [
+        {
+            adjustment_type: "Common",
+            adjustment_value: 0
+        },
+        {
+            adjustment_type: "Uncommon",
+            adjustment_value: 2
+        },
+        {
+            adjustment_type: "Rare",
+            adjustment_value: 5
+        },
+        {
+            adjustment_type: "Unique",
+            adjustment_value: 10
+        },
+    ];
 
     /**
      * getSimpleDC
      *  proficiency: string, difficulty?: string 
      **/
-    public getSimpleDC(proficiency: string, difficulty?: string): number {
+    public static getSimpleDC(proficiency: string, difficulty?: string): number {
         let adjust: number = 0;
         if(difficulty !== undefined) {
             adjust = this.difficultyAdj.find(diff => diff.adjustment_type.toLowerCase() === difficulty.toLowerCase())?.adjustment_value ?? 0;
@@ -117,7 +109,7 @@ export class DifficultyClass
      * getSpellDC
      * spellLevel: number, rarity?: string
      **/
-    public getSpellDC(spellLevel: number, rarity?: string) {
+    public static getSpellDC(spellLevel: number, rarity?: string) {
         let adjust: number = 0;
         if(rarity !== undefined) {
             adjust = this.rarityAdj.find(r => r.adjustment_type.toLowerCase() === rarity.toLowerCase())?.adjustment_value ?? 0;
@@ -136,7 +128,7 @@ export class DifficultyClass
      * getDCByLevel
      * level: number, difficulty?: string
      **/
-    public getDCByLevel(level: number, difficulty?: string) {
+    public static getDCByLevel(level: number, difficulty?: string) {
         let adjust: number = 0;
         if(difficulty !== undefined) {
             adjust = this.difficultyAdj.find(diff => diff.adjustment_type.toLowerCase() === difficulty.toLowerCase())?.adjustment_value ?? 0;
